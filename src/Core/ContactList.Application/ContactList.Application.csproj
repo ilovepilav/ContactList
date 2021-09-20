@@ -15,10 +15,4 @@
     <ProjectReference Include="..\ContactList.Domain\ContactList.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Queries\GetAllPersons\" />
-    <Folder Include="Features\Queries\GetContactsByPersonId\" />
-    <Folder Include="Features\Queries\GetPersonById\" />
-  </ItemGroup>
-
 </Project>
