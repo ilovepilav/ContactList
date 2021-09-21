@@ -1,0 +1,28 @@
+﻿@model CreatePersonCommand
+
+
+<h3>Kişi Ekle</h3>
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="@Model.FirstName"></label>
+        <input asp-for="@Model.FirstName" type="text" class="form-control" />
+        <span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.LastName"></label>
+        <input asp-for="@Model.LastName" type="text" class="form-control" />
+        <span class="text-danger" asp-validation-for="@Model.LastName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.BirthDate"></label>
+        <input asp-for="@Model.BirthDate" type="date" value="" class="form-control" />
+        <span class="text-danger" asp-validation-for="@Model.BirthDate"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Email"></label>
+        <input asp-for="@Model.Email" type="email" class="form-control" />
+        <span class="text-danger" asp-validation-for="@Model.Email"></span>
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Kaydet</button>
+</form>

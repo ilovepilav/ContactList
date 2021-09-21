@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using ContactList.Application.Dtos;
+using ContactList.Application.Features.Commands.PersonCommands.CreatePerson;
+using ContactList.Application.Features.Commands.PersonCommands.UpdatePerson;
+using ContactList.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +15,9 @@ namespace ContactList.Application.Mapping
     {
         public PersonProfile()
         {
-            CreateMap<Domain.Entities.Person, Dtos.PersonViewDto>().ReverseMap();
+            CreateMap<Person, PersonViewDto>().ReverseMap();
+            CreateMap<Person, UpdatePersonCommand>().ReverseMap();
+            CreateMap<Person, CreatePersonCommand>().ReverseMap();
         }
     }
 }

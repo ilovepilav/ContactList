@@ -1,0 +1,56 @@
+﻿@model List<PersonViewDto>
+
+@{
+    ViewData["Title"] = "Kişiler";
+}
+
+
+<div class="row">
+    <div class="col-10">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">İsim</th>
+                    <th scope="col">Soyisim</th>
+                    <th scope="col">Doğum Tarihi</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Düzenle</th>
+                    <th scope="col">Kontaklar</th>
+                    <th scope="col">Kişiyi Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.BirthDate.ToShortDateString()</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <form asp-action="Detail">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button class="btn btn-secondary" type="submit">Kişiyi Düzenle</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="EditContacts">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button class="btn btn-primary" type="submit">Kontakları Düzenle</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="Delete">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button class="btn btn-danger" type="submit">Kişiyi Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-2">
+        @{ await Html.RenderPartialAsync("_CreatePersonPartial", new CreatePersonCommand());}
+    </div>
+</div>

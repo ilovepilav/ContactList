@@ -12,6 +12,7 @@ namespace ContactList.Domain.Entities
         public string ContactName { get; set; }
         public string PhoneNumber { get; set; }
 
+        public Person Person { get; set; }
         public Guid PersonId { get; set; }
     }
 }

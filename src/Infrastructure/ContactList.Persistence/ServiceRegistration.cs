@@ -13,7 +13,7 @@ namespace ContactList.Persistence
 {
     public static class ServiceRegistration
     {
-        public static void AddPersistenceRegistration(IServiceCollection services)
+        public static void AddPersistenceRegistration(this IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=localhost;Database=ContactListDb;Integrated Security=True"));
 

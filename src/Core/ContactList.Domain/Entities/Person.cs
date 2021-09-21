@@ -14,6 +14,6 @@ namespace ContactList.Domain.Entities
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
 
-        public List<Person> Contacts { get; set; }
+        public List<Contact> Contacts { get; set; }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model UpdateContactCommand
+
+
+@foreach (var item in ViewData["Contacts"] as List<UpdateContactCommand>)
+{
+    <form asp-action="Update" class="row mt-1">
+        <input type="hidden" name="Id" value="@item.Id" />
+        <input type="hidden" name="personId" value="@ViewData["PersonId"]" />
+        <div class="col">
+            <input type="text" class="form-control" asp-for="@Model.ContactName" value="@item.ContactName" />
+            <span class="text-danger" asp-validation-for="@Model.ContactName"> </span>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" asp-for="@Model.PhoneNumber" value="@item.PhoneNumber" />
+            <span class="text-danger" asp-validation-for="@Model.PhoneNumber"></span>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-outline-success">Kaydet</button>
+        </div>
+        <div class="col">
+            <a asp-action="Delete" asp-route-personId="@ViewBag.PersonId" asp-route-id="@item.Id" class="btn btn-danger">Kontağı Sil</a>
+        </div>
+    </form>
+}
+
