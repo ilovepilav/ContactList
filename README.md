@@ -13,7 +13,7 @@ git clone https://github.com/ilovepilav/ContactList.git
 
 ```
 
-- Projeyi cloneladıktan sonra ContactList.Persistence altındaki ApplicationDbContext dosyasını kendi database bağlantınıza göre düzenleyin.
+- Projeyi cloneladıktan sonra ContactList.Persistence altındaki ServiceRegistration dosyasındaki AddDbContext methodunu kendi database bağlantınıza göre düzenleyin.
 
 - Persistence projesinde migration işlemi yapın.
 
