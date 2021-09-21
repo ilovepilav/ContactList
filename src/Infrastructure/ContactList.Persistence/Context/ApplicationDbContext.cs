@@ -1,4 +1,5 @@
 ﻿using ContactList.Domain.Entities;
+using ContactList.Persistence.Mappings;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,17 +22,8 @@ namespace ContactList.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Person>().HasData(
-                new Person() { Id = Guid.NewGuid(), FirstName = "Ahmet", LastName = "Yılmaz", BirthDate = DateTime.Now, Email = "test@test.com" },
-                new Person() { Id = Guid.NewGuid(), FirstName = "Mehmet", LastName = "Yılmaz", BirthDate = DateTime.Now, Email = "test@test.com" },
-                new Person() { Id = Guid.NewGuid(), FirstName = "Hasan", LastName = "Yılmaz", BirthDate = DateTime.Now, Email = "test@test.com" },
-                new Person() { Id = Guid.NewGuid(), FirstName = "Metin", LastName = "Yılmaz", BirthDate = DateTime.Now, Email = "test@test.com" }
-                
-                
-                );
-
-
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new PersonMap());
+            modelBuilder.ApplyConfiguration(new ContactMap());
         }
     }
 }
