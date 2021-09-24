@@ -15,24 +15,24 @@ namespace ContactList.Web.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly IMediator mediator;
+        private readonly IMediator _mediator;
 
         public PersonController(IMediator mediator)
         {
-            this.mediator = mediator;
+            _mediator = mediator;
         }
 
         public async Task<IActionResult> Index()
         {
             var query = new GetAllPersonsQuery();
-            var result = await mediator.Send(query);
+            var result = await _mediator.Send(query);
             return View(result);
         }
 
         public async Task<IActionResult> Detail(Guid id)
         {
             var query = new GetPersonByIdQuery() { Id = id };
-            var result = await mediator.Send(query);
+            var result = await _mediator.Send(query);
 
             return View(result);
         }
@@ -42,7 +42,7 @@ namespace ContactList.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await mediator.Send(command);
+                var result = await _mediator.Send(command);
                 if (result)
                 {
                     return RedirectToAction("Index");
@@ -59,7 +59,7 @@ namespace ContactList.Web.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var query = new DeletePersonCommand() { Id = id };
-            var result = await mediator.Send(query);
+            var result = await _mediator.Send(query);
             if (result)
             {
                 return RedirectToAction("Index");
@@ -71,7 +71,7 @@ namespace ContactList.Web.Controllers
         public async Task<IActionResult> EditContacts(Guid id)
         {
             var query = new GetPersonByIdQuery() { Id = id };
-            var result = await mediator.Send(query);
+            var result = await _mediator.Send(query);
             if (result != null)
             {
                 TempData["FullName"] = $"{result.FirstName} {result.LastName}";
@@ -86,7 +86,7 @@ namespace ContactList.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await mediator.Send(command);
+                var result = await _mediator.Send(command);
                 if (result)
                 {
                     return RedirectToAction("Index");

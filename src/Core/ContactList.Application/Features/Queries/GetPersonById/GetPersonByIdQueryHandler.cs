@@ -13,19 +13,19 @@ namespace ContactList.Application.Features.Queries.GetPersonById
 {
     public class GetPersonByIdQueryHandler : IRequestHandler<GetPersonByIdQuery, PersonViewDto>
     {
-        private readonly IPersonRepository personRepository;
-        private readonly IMapper mapper;
+        private readonly IPersonRepository _personRepository;
+        private readonly IMapper _mapper;
 
         public GetPersonByIdQueryHandler(IPersonRepository personRepository, IMapper mapper)
         {
-            this.personRepository = personRepository;
-            this.mapper = mapper;
+            _personRepository = personRepository;
+            _mapper = mapper;
         }
 
         public async Task<PersonViewDto> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
         {
-            var person = await personRepository.GetByIdAsync(request.Id);
-            var dto = mapper.Map<PersonViewDto>(person);
+            var person = await _personRepository.GetByIdAsync(request.Id);
+            var dto = _mapper.Map<PersonViewDto>(person);
 
             return dto;
         }

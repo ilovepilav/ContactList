@@ -15,24 +15,24 @@ namespace ContactList.Web.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly IMediator mediator;
-        private readonly IMapper mapper;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
         public ContactController(IMediator mediator, IMapper mapper)
         {
-            this.mediator = mediator;
-            this.mapper = mapper;
+            _mediator = mediator;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> List(Guid id)
         {
             var query = new GetContactsByPersonIdQuery() {PersonId=id };
-            var resultList = await mediator.Send(query);
+            var resultList = await _mediator.Send(query);
 
 
             if (resultList != null)
             {
-                var contactModels = mapper.Map<List<UpdateContactCommand>>(resultList);
+                var contactModels = _mapper.Map<List<UpdateContactCommand>>(resultList);
                 ViewData["Contacts"] = contactModels;
                 ViewBag.PersonId = id;
                 return View();
@@ -46,7 +46,7 @@ namespace ContactList.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await mediator.Send(command);
+                var result = await _mediator.Send(command);
                 if (result)
                 {
                     return RedirectToAction("EditContacts", "Person", new { id= command.PersonId });
@@ -61,7 +61,7 @@ namespace ContactList.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await mediator.Send(command);
+                var result = await _mediator.Send(command);
                 if (result)
                 {
                     return RedirectToAction("EditContacts","Person", new { id = personId });
@@ -73,7 +73,7 @@ namespace ContactList.Web.Controllers
         public async Task<IActionResult> Delete(Guid id, Guid personId)
         {
             var command = new DeleteContactCommand() { Id = id };
-            var result = await mediator.Send(command);
+            var result = await _mediator.Send(command);
             if (result)
             {
                 return RedirectToAction("EditContacts", "Person", new { id = personId });

@@ -12,20 +12,20 @@ namespace ContactList.Application.Features.Commands.ContactCommands.UpdateContac
 {
     public class UpdateContactCommandHandler : IRequestHandler<UpdateContactCommand, bool>
     {
-        private readonly IContactRepository contactRepository;
-        private readonly IMapper mapper;
+        private readonly IContactRepository _contactRepository;
+        private readonly IMapper _mapper;
 
         public UpdateContactCommandHandler(IContactRepository contactRepository, IMapper mapper)
         {
-            this.contactRepository = contactRepository;
-            this.mapper = mapper;
+            _contactRepository = contactRepository;
+            _mapper = mapper;
         }
 
         public async Task<bool> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
         {
-            var contact = await contactRepository.GetByIdAsync(request.Id);
-            mapper.Map(request, contact);
-            await contactRepository.UpdateAsync(contact);
+            var contact = await _contactRepository.GetByIdAsync(request.Id);
+            _mapper.Map(request, contact);
+            await _contactRepository.UpdateAsync(contact);
             return true;
         }
     }

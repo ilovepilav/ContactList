@@ -11,17 +11,17 @@ namespace ContactList.Application.Features.Commands.ContactCommands.DeleteContac
 {
     public class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand, bool>
     {
-        private readonly IContactRepository contactRepository;
+        private readonly IContactRepository _contactRepository;
 
         public DeleteContactCommandHandler(IContactRepository contactRepository)
         {
-            this.contactRepository = contactRepository;
+            _contactRepository = contactRepository;
         }
 
 
         public async Task<bool> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {
-            await contactRepository.DeleteAsync(request.Id);
+            await _contactRepository.DeleteAsync(request.Id);
             return true;
         }
     }
