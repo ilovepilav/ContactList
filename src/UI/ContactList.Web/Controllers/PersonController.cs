@@ -47,11 +47,11 @@ namespace ContactList.Web.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                ViewBag.Error = "Kişi güncellenemedi. Anasayfaya Yöneldiriliyorsunuz.";
+                ViewBag.Error = "Kişi güncellenemedi. Anasayfaya Yönlendiriliyorsunuz.";
                 return View("Error");
             }
 
-            ViewBag.Error = "Kişi bilgileri hatalı. Anasayfaya Yöneldiriliyorsunuz.";
+            ViewBag.Error = "Kişi bilgileri hatalı. Anasayfaya Yönlendiriliyorsunuz.";
             return View("Error");
         }
 
