@@ -16,7 +16,6 @@ namespace ContactList.Persistence
         public static void AddPersistenceRegistration(this IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=localhost;Database=ContactListDb;Integrated Security=True"));
-
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
         }
